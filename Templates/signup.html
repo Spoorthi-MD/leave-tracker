@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Register here if you are new employee</h1>
+ <form action="/signup/" method="POST">
+      {% csrf_token %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {% for message in messages %}
+      {{message}}
+      {% endfor %}
+</div>
+
+    <div>
+      <input type="text" name="username" value="" placeholder="User Name"><br><br>
+      <input type="email" name="email" value="" placeholder="Email ID"><br><br>
+      <input type="password" name="password1" value="" placeholder="Password"><br><br>
+      <input type="password" name="password2" value="" placeholder="Confirm Password"><br><br>
+      <input class="btn btn-success" type="submit" name="submit" value="Register here"><br><br>
+    </div>
+  </form>
+</body>
+</html>
