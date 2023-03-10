@@ -10,6 +10,7 @@ from django.core.mail import EmailMultiAlternatives
 from auth_system.forms import Employee_form,leave_form
 from datetime import date
 from auth_system.models import holiday
+from datetime import datetime
 
 # Create your views here.
 
@@ -82,14 +83,29 @@ def forms2(Request):
         form = leave_form(Request.POST)
         Start_date = Request.POST['Start_date']
         End_date = Request.POST['End_date']
+
+
         print(Start_date)
         print(type(Start_date))
         if End_date >= Start_date:
             form.save(commit=True)
+            import datetime
+            # Startdate 2023-03-11
+            yyyy = int(Start_date[0:4])
+            mm = int(Start_date[5:7])
+            dd = int(Start_date[-2:])
+            # enddate
+            yyyy_e = int(End_date[0:4])
+            mm_e = int(End_date[5:7])
+            dd_e = int(End_date[-2:])
+            start = datetime.date(yyyy, mm, dd)
+            end = datetime.date(yyyy_e, mm_e, dd_e)
+            daydiff = end.weekday() - start.weekday()
+            days = ((end - start).days - daydiff) / 7 * 5 + min(daydiff, 5) - (max(end.weekday() - 4, 0) % 5)
+            print(start, '***', days, '***', end)
             if form.is_valid():
-
                     form.save(commit=True)
-                    return HttpResponse("<h1>Leave applied successfully")
+                    return HttpResponse("<h1>You have successfully applied  %d days of leaves</h1>"%days)
             else:
                 print("Error form invalid")
         else:
