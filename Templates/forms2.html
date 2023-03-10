@@ -7,6 +7,9 @@
   <body>
     <h1>Apply leaves here</h1>
     <form method="POST">
+      {% for message in messages %}
+      {{message}}
+      {% endfor %}
       {{form.as_p}}
       {%csrf_token%}
       <input type="submit" name="" value="Submit">

@@ -7,15 +7,17 @@
 <body>
 <h1>Login page</h1>
 <div class="form" >
-  <form class="" method="POST">
+  <form class="" action="/home/" method="POST">
       {% csrf_token %}
     <input type="text" name="username" value="" placeholder="username">
       <br>
       <br>
-    <input type="text" name="" value="" placeholder="password">
+    <input type="password" name="" value="" placeholder="password">
       <br>
       <br>
     <button type="submit" name="button">Submit</button>
+      <h4><span>Not Registered!?</span></h4>
+      <a href="/signup/"><h2>Register</h2></a>
   </form>
 
 </div>

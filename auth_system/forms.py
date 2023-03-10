@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from auth_system.models import Employee,employee_leave
+from auth_system.models import Employee,employee_leave,holiday
 class Employee_form(ModelForm):
     class Meta:
         model = Employee
@@ -11,5 +11,4 @@ class leave_form(ModelForm):
         model = employee_leave
 
         fields = '__all__'
-
 
